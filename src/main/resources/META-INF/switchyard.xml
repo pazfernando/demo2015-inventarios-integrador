@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sy:switchyard xmlns:bean="urn:switchyard-component-bean:config:1.1" xmlns:resteasy="urn:switchyard-component-resteasy:config:1.1" xmlns:sca="http://docs.oasis-open.org/ns/opencsa/sca/200912" xmlns:sql="urn:switchyard-component-camel-sql:config:1.1" xmlns:sy="urn:switchyard-config:switchyard:1.1" name="switchyard-example" targetNamespace="urn:es.com.se.demo2015:switchyard-example:1.0">
+  <sca:composite name="switchyard-example" targetNamespace="urn:es.com.se.demo2015:switchyard-example:1.0">
+    <sca:component name="InventariosBean">
+      <bean:implementation.bean class="ec.com.se.demo2015.inventarios.InventariosBean"/>
+      <sca:reference name="InventariosBDD">
+        <sca:interface.java interface="ec.com.se.demo2015.inventarios.InventariosBDD"/>
+      </sca:reference>
+      <sca:service name="Inventarios">
+        <sca:interface.java interface="ec.com.se.demo2015.inventarios.Inventarios"/>
+      </sca:service>
+    </sca:component>
+    <sca:reference name="InventariosBDD" multiplicity="0..1" promote="InventariosBean/InventariosBDD">
+      <sca:interface.java interface="ec.com.se.demo2015.inventarios.InventariosBDD"/>
+      <sql:binding.sql name="productos_activos">
+        <sql:query>select sku, nombre, descripcion from productos where activo = '1'</sql:query>
+        <sql:dataSourceRef>java:jboss/datasources/Demo2015Inventarios</sql:dataSourceRef>
+      </sql:binding.sql>
+    </sca:reference>
+    <sca:service name="Inventarios" promote="InventariosBean/Inventarios">
+      <sca:interface.java interface="ec.com.se.demo2015.inventarios.Inventarios"/>
+      <resteasy:binding.rest name="rest1">
+        <resteasy:messageComposer class="ec.com.se.demo2015.inventarios.SEMessageComposer"/>
+        <resteasy:interfaces>ec.com.se.demo2015.inventarios.InventariosResource</resteasy:interfaces>
+        <resteasy:contextPath>rest-binding</resteasy:contextPath>
+      </resteasy:binding.rest>
+    </sca:service>
+  </sca:composite>
+</sy:switchyard>

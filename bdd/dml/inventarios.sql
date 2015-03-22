@@ -1,0 +1,11 @@
+delete from PRODUCTOS;
+insert into PRODUCTOS (sku, nombre, descripcion) values ('A000456','ZURIMAX 300','Antibiótico gama alta');
+insert into PRODUCTOS (sku, nombre, descripcion) values ('A000582','TOBIL 375','Antibiótico gama alta');
+insert into PRODUCTOS (sku, nombre, descripcion) values ('B45687','ARETES PREMIER LUXEN','Accesorios de mujer');
+insert into PRODUCTOS (sku, nombre, descripcion) values ('10000000023','GALLETAS ELITE','Alimentos');
+insert into PRODUCTOS (sku, nombre, descripcion) values ('CXD000500','MEMORIA EXT 64GB','Dispositivo de almacenamiento de datos');
+insert into PRODUCTOS (sku, nombre, descripcion, activo) values ('CXD000502','DISCO USB3 1TB','Dispositivo de almacenamiento de datos','0');
+insert into PRODUCTOS (sku, nombre, descripcion, activo) values ('CXD000503','TABLET XIMPERIA 23','Dispositivo Electrónico Android','0');
+insert into PRODUCTOS (sku, nombre, descripcion, activo) values ('X233000F1','GIFCARD 60USD','Tarjeta de Regalo','0');
+insert into PRODUCTOS (sku, nombre, descripcion) values ('X233000F2','GIFCARD 120USD','Tarjeta de Regalo');
+insert into PRODUCTOS (sku, nombre, descripcion) values ('ABF001P','PLAN FAMILIA 3','Plan de Asistencia Preventiva');
